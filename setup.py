@@ -4,16 +4,16 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="art_generator-ac999", # Replace with your own username
-    version="0.0.1",
+    name="art_generator-ac872", # Replace with your own username
+    version="0.1",
     author="Arbri Chili",
     author_email="",
     description="A small example package",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/ac872/art_generator",
     project_urls={
-        "Bug Tracker": "https://github.com/pypa/sampleproject/issues",
+        "Bug Tracker": "",
     },
     classifiers=[
         "Programming Language :: Python :: 3",
