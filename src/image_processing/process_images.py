@@ -7,7 +7,7 @@ import processed
 def load_images_from_folder(folder):
     images = []
     for filename in os.listdir(folder):
-        img = cv2.imread(os.path.join(folder, filename))
+        img = cv2.imread(os.path.join(folder, filename), 1)
         if img is not None:
             images.append([img, filename])  # Append image and image filename
     return images
@@ -17,11 +17,14 @@ def crop_images(images):
     # Cropped from top left of the image
     y = 0
     x = 0
-    # Define size of cropped images
-    h = 640
-    w = 640
+    # Size of image:
+    # Ensure image size is multiple of 10
     for row in images:
-        row[0] = row[0][x:w, y:h]
+        image = row[0]
+        h, w, z = image.shape  # discard z
+        h = next(is_multiple_of(h, 10))
+        w = next(is_multiple_of(w, 10))
+        row[0] = image[x:w, y:h]
         row[1] = str(h) + "x" + str(w) + row[1]
         # cv2.imshow("CroppedImage", row[0])  # Show Cropped Image
         # cv2.waitKey(0)
@@ -44,3 +47,11 @@ def image_crop():
     processed_imgs = crop_images(raw_imgs)
     processed_img_filepath = os.path.dirname(processed.__file__)
     save_images(processed_imgs, processed_img_filepath)
+
+
+def is_multiple_of(num, multiple=10):
+    while not num % multiple == 0:
+        num -= 1
+    yield num
+
+
