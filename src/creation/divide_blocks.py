@@ -24,7 +24,7 @@ def chop_arrays_to_grids():
     images = [i[0] for i in images]  # Remove filenames
     grids = []
 
-    # Create list of larger numpy arrays split into smaller grids
+    # Create list of smaller arrays from the larger array
     for i in images:
         chopped_np_arrays = [slice_array(i[:, :, x], 10, 10) for x in range(3)]
         gbr = np.stack(chopped_np_arrays, axis=3)
