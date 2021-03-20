@@ -23,10 +23,11 @@ def chop_arrays_to_grids():
     images = load_images_from_folder(os.path.dirname(processed.__file__))
     images = [i[0] for i in images]  # Remove filenames
     grids = []
+    block_length = 10
 
     # Create list of smaller arrays from the larger array
     for i in images:
-        chopped_np_arrays = [slice_array(i[:, :, x], 10, 10) for x in range(3)]
+        chopped_np_arrays = [slice_array(i[:, :, x], block_length, block_length) for x in range(3)]
         gbr = np.stack(chopped_np_arrays, axis=3)
         grids.append(gbr)
 

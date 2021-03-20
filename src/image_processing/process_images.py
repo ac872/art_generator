@@ -19,12 +19,13 @@ def crop_images(images):
     y = 0
     x = 0
     # Size of image:
+    block_length = 10
     # Ensure image size is multiple of 10
     for row in images:
         image = row[0]
         h, w, z = image.shape  # discard z
-        h = next(is_multiple_of(h, 10))
-        w = next(is_multiple_of(w, 10))
+        h = next(is_multiple_of(h, block_length))
+        w = next(is_multiple_of(w, block_length))
         row[0] = image[x:w, y:h]
         row[1] = str(h) + "x" + str(w) + row[1]
         # cv2.imshow("CroppedImage", row[0])  # Show Cropped Image
