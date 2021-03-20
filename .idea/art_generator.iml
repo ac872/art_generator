@@ -10,6 +10,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/data/art/training_images/processed" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/data/art/training_images/test_images" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/data/art/training_images/unprocessed" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/data/art/generated_images/ml_generated" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/data/art/generated_images/opencv_transformed" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/data/art/training_images/text_files" type="java-resource" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (image_generator)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
