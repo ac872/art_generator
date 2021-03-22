@@ -1,4 +1,4 @@
-#Art Generator
+# Art Generator
 
 Randomly generate images made up from small blocks of other images.
 
@@ -14,7 +14,7 @@ To:
 ![image1](art_data/art/readme3.png)
 
 
-##Installation and Running
+## Installation and Running
 
 Note: Recommended to run and install within a Python virtual environment.
 
@@ -34,7 +34,7 @@ pip install -r requirements.txt
 python src/main.py
 ```
 
-##Licence
+## Licence
 
 MIT LICENSE
 
