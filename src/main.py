@@ -61,7 +61,7 @@ def is_multiple_of(num: int, multiple: int) -> int:
 
 
 def divide_images():
-    chopped = chop_arrays_to_grids(block_length)
+    chopped = chop_arrays_to_grids(block_length, processed)
     save_to_hf("data.h5", h5_data_folder, chopped)
 
 

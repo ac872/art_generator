@@ -1,22 +1,40 @@
-**Art Generator**
+#Art Generator
 
 Randomly generate images made up from small blocks of other images.
 
+Cut and divide images into smaller squares of size 10x10, 20x20, 30x30 or 40x40px. Then randomly recombine to generate
+new image. I.e. go from:
 
-**Installation and Running**
+![image1](art_data/art/readme1.png) ![image1](art_data/art/readme2.png) ![image1](art_data/art/readme4.png) 
 
-In a terminal:
+![image1](art_data/art/readme5.png) ![image1](art_data/art/readme6.png) ![image1](art_data/art/readme7.png) 
+
+To:
+
+![image1](art_data/art/readme3.png)
+
+
+##Installation and Running
+
+Note: Recommended to run and install within a Python virtual environment.
+
+In a terminal and a new directory of your choice:
 
 ```
 cd PATH_TO_DIRECTORY/new_folder
+```
 
+Then populate the image directory "art_data/art/input_images/unprocessed" with images of minimum size 640x640px. 
+Images larger than this will be cropped down to 640x640px.
+
+```
 git clone https://github.com/ac872/art_generator.git
 pip install -r requirements.txt
 
 python src/main.py
 ```
 
-**Licence**
+##Licence
 
 MIT LICENSE
 

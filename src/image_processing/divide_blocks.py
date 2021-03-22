@@ -58,6 +58,5 @@ def save_to_hf(filename, folder, data_grid):
                 f.clear()
                 group = f.create_group("colour_images")
                 group.create_dataset("test_data", data=data_grid)
-                print(list(f.keys()))
             return
-    print("No file found of name: " + filename)
+    print("No file found of name: " + filename + "\n please create data.h5 file")

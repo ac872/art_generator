@@ -9,6 +9,7 @@
 # Images generated and collected
 *.png
 *.jpg
+!readme*.png
 *.h5
 
 .idea
