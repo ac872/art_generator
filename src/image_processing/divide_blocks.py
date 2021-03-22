@@ -22,8 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from data.art.input import processed
-from image_processing.process_images import load_images_from_folder
+from src.image_processing.process_images import load_images_from_folder
 import os
 import h5py
 import numpy as np
@@ -36,8 +35,8 @@ def slice_array(array, num_rows, num_cols):
             .reshape(-1, num_rows, num_cols))
 
 
-def chop_arrays_to_grids(block_length):
-    images = load_images_from_folder(os.path.dirname(processed.__file__))
+def chop_arrays_to_grids(block_length, folder):
+    images = load_images_from_folder(folder)
     images = [i[0] for i in images]  # Remove filenames
     grids = []
 
@@ -60,6 +59,5 @@ def save_to_hf(filename, folder, data_grid):
                 group = f.create_group("colour_images")
                 group.create_dataset("test_data", data=data_grid)
                 print(list(f.keys()))
-
             return
     print("No file found of name: " + filename)

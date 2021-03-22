@@ -22,14 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from data import h5_files
-from data.art.output import first_batch_test
 from random import seed, randint
-import time
 import os
 import h5py
-import cv2
-
 import numpy as np
 
 
