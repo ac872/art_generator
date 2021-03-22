@@ -18,7 +18,7 @@ python src/main.py
 
 **Licence**
 
-MIT LICENCSE
+MIT LICENSE
 
 Copyright (c) 2021 Arbri Chili
 
