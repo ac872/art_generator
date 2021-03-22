@@ -10,6 +10,8 @@
 *.png
 *.jpg
 *.h5
+first_batch_test
+tests
 
 # User-specific stuff
 .idea/**/workspace.xml

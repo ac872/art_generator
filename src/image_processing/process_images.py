@@ -1,8 +1,29 @@
+"""
+MIT License
+
+Copyright (c) 2021 Arbri Chili
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+
 import cv2
-import h5py
 import os
-import unprocessed
-import processed
 
 
 def load_images_from_folder(folder):
@@ -19,13 +40,11 @@ def crop_images(images):
     y = 0
     x = 0
     # Size of image:
-    block_length = 10
-    # Ensure image size is multiple of 10
+    # Ensure image size is 640x640
+    h = 640
+    w = 640
     for row in images:
         image = row[0]
-        h, w, z = image.shape  # discard z
-        h = next(is_multiple_of(h, block_length))
-        w = next(is_multiple_of(w, block_length))
         row[0] = image[x:w, y:h]
         row[1] = str(h) + "x" + str(w) + row[1]
         # cv2.imshow("CroppedImage", row[0])  # Show Cropped Image
@@ -41,19 +60,3 @@ def save_images(images, folder):
         location = os.path.join(folder, filename)
         print(location)
         cv2.imwrite(location, img)
-
-
-def image_crop():
-    raw_img_filepath = os.path.dirname(unprocessed.__file__)
-    raw_imgs = load_images_from_folder(raw_img_filepath)
-    processed_imgs = crop_images(raw_imgs)
-    processed_img_filepath = os.path.dirname(processed.__file__)
-    save_images(processed_imgs, processed_img_filepath)
-
-
-def is_multiple_of(num, multiple=10):
-    while not num % multiple == 0:
-        num -= 1
-    yield num
-
-

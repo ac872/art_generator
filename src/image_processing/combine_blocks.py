@@ -1,10 +1,31 @@
-from data.art.training_images import text_files, processed
-from data.art.generated_images import first_batch_test
-from creation.blocks import combine_array
-from image_processing.process_images import load_images_from_folder
+"""
+MIT License
+
+Copyright (c) 2021 Arbri Chili
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+
+from data import h5_files
+from data.art.output import first_batch_test
 from random import seed, randint
 import time
-import datetime
 import os
 import h5py
 import cv2
@@ -21,17 +42,20 @@ def read_h5(filename, folder):
     print("No file found of name: " + filename)
 
 
-grids = read_h5("data.h5", os.path.dirname(text_files.__file__))
-
-
-def is_multiple_of(num, multiple=10):
+def is_multiple_of(num: int, multiple: int):
     while not num % multiple == 0:
         num -= 1
     yield num
 
 
-def create_image(h, w, data):
-    block_length = 10
+def combine_array(arr, h, w):
+    n, num_rows, num_cols = arr.shape
+    return (arr.reshape(h // num_rows, -1, num_rows, num_cols)
+            .swapaxes(1, 2)
+            .reshape(h, w))
+
+
+def create_image(h, w, data, block_length):
     if h < block_length or w < block_length:
         return ValueError
     h = next(is_multiple_of(h, block_length))
@@ -64,14 +88,3 @@ def create_image(h, w, data):
 
     blocks = np.stack([green, blue, red], axis=2)
     return blocks
-
-
-generated_image = create_image(2000, 2000, grids)
-
-
-t = time.localtime()
-current_time = time.strftime("%d-%m-%Y_%H_%M_%S", t)
-image_save_location = os.path.join(os.path.dirname(first_batch_test.__file__), current_time + ".jpg")
-cv2.imshow("CroppedImage", generated_image)  # Show Cropped Image
-cv2.waitKey(0)
-cv2.imwrite(image_save_location, generated_image)
