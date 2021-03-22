@@ -10,8 +10,7 @@
 *.png
 *.jpg
 *.h5
-first_batch_test
-tests
+
 .idea
 workspace.xml
 
