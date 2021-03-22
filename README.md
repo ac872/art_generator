@@ -3,7 +3,7 @@
 Randomly generate images made up from small blocks of other images.
 
 Cut and divide images into smaller squares of size 10x10, 20x20, 30x30 or 40x40px. Then randomly recombine to generate
-new image. I.e. go from:
+new image. i.e. go from:
 
 ![image1](art_data/art/readme1.png) ![image1](art_data/art/readme2.png) ![image1](art_data/art/readme4.png) 
 
