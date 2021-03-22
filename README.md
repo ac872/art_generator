@@ -1,6 +1,20 @@
-**Installation**
+**Art Generator**
+
+Randomly generate images made up from small blocks of other images.
 
 
+**Installation and Running**
+
+In a terminal:
+
+```
+cd PATH_TO_DIRECTORY/new_folder
+
+git clone https://github.com/ac872/art_generator.git
+pip install -r requirements.txt
+
+python src/main.py
+```
 
 **Licence**
 
